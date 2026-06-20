@@ -1,10 +1,10 @@
-package org.svenehrke.demo.outbound.fruitservice.memory;
+package org.svenehrke.demo.outbound.fruit.memory;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import org.svenehrke.demo.core.Fruit;
-import org.svenehrke.demo.core.FruitListInPort2;
-import org.svenehrke.demo.core.FruitListOutPort;
+import org.svenehrke.demo.core.fruit.Fruit;
+import org.svenehrke.demo.core.fruit.FruitListInPort2;
+import org.svenehrke.demo.core.fruit.FruitListOutPort;
 
 import java.util.List;
 

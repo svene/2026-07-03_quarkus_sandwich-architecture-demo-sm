@@ -1,11 +1,11 @@
-package org.svenehrke.demo.inbound;
+package org.svenehrke.demo.inbound.fruit;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import org.svenehrke.demo.core.FruitListInPort;
+import org.svenehrke.demo.core.fruit.FruitListInPort;
 
 /**
  * Wrapper/Adapter for `FruitListInPort.getFruits()`.

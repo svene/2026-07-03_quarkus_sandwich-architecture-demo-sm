@@ -1,11 +1,11 @@
-package org.svenehrke.demo.inbound;
+package org.svenehrke.demo.inbound.greeting;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import org.svenehrke.demo.core.HelloInPort;
+import org.svenehrke.demo.core.greeting.HelloInPort;
 
 /**
  * Wrapper/Adapter for `HelloInPort.hello()`.

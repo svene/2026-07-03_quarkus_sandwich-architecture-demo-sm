@@ -1,4 +1,4 @@
-package org.svenehrke.demo.core;
+package org.svenehrke.demo.core.fruit;
 
 import jakarta.enterprise.context.ApplicationScoped;
 

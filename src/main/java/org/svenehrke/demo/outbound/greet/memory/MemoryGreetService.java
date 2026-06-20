@@ -1,7 +1,7 @@
-package org.svenehrke.demo.outbound.greetservice.memory;
+package org.svenehrke.demo.outbound.greet.memory;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import org.svenehrke.demo.core.GreetServicePort;
+import org.svenehrke.demo.core.greeting.GreetServicePort;
 
 @ApplicationScoped
 class MemoryGreetService implements GreetServicePort {
