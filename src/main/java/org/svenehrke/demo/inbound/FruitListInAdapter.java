@@ -5,20 +5,20 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import org.svenehrke.demo.core.HelloInPort;
+import org.svenehrke.demo.core.FruitListInPort;
 
 /**
- * Wrapper/Adapter for `HelloInPort.hello()`.
+ * Wrapper/Adapter for `FruitListInPort.getFruits()`.
  */
-@Path("/hello")
-class GreetInAdapter {
+@Path("/fruits")
+class FruitListInAdapter {
 
     @Inject
-    HelloInPort helloInPort;
+    FruitListInPort port;
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        return helloInPort.hello();
+    public String fruits() {
+        return port.getFruits();
     }
 }
