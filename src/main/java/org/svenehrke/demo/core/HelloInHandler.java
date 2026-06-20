@@ -4,7 +4,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 @ApplicationScoped
-public class HelloInHandler implements HelloInPort {
+class HelloInHandler implements HelloInPort {
 
 	@Inject
 	GreetServicePort greetServicePort;

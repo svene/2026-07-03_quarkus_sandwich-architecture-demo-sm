@@ -4,7 +4,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import org.svenehrke.demo.core.GreetServicePort;
 
 @ApplicationScoped
-public class MemoryGreetService implements GreetServicePort {
+class MemoryGreetService implements GreetServicePort {
 	@Override
 	public String hello() {
 		return "Hello from MemoryGreetService";

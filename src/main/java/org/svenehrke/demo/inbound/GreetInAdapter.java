@@ -11,7 +11,7 @@ import org.svenehrke.demo.core.HelloInPort;
  * Wrapper for `HelloInPort.hello()`.
  */
 @Path("/hello")
-public class GreetInAdapter {
+class GreetInAdapter {
 
     @Inject
     HelloInPort helloInPort;
