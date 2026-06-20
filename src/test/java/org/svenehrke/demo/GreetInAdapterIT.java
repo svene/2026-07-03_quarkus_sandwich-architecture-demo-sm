@@ -3,6 +3,6 @@ package org.svenehrke.demo;
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 
 @QuarkusIntegrationTest
-class GreetingResourceIT extends GreetingResourceTest {
+class GreetInAdapterIT extends GreetInAdapterTest {
     // Execute the same tests but in packaged mode.
 }
