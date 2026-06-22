@@ -6,7 +6,7 @@ import org.svenehrke.demo.core.fruit.FruitListOutPort;
 import java.util.List;
 
 @ApplicationScoped
-public class MemoryFruitService implements FruitListOutPort {
+class MemoryFruitService implements FruitListOutPort {
 	@Override
 	public List<Integer> getFruitIds() {
 		return new FruitDB().getFruits().stream()
