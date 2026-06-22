@@ -1,23 +1,16 @@
-package org.svenehrke.demo.outbound.fruit.memory;
+package org.svenehrke.demo.outbound.fruit;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import org.svenehrke.demo.core.fruit.Fruit;
-import org.svenehrke.demo.core.fruit.FruitListInPort2;
 import org.svenehrke.demo.core.fruit.FruitListOutPort;
 
 import java.util.List;
 
 @ApplicationScoped
 public class MemoryFruitService implements FruitListOutPort {
-	@Inject
-	FruitListInPort2 fruitListInPort2;
-
 	@Override
-	public List<Fruit> getFruits() {
+	public List<Integer> getFruitIds() {
 		return new FruitDB().getFruits().stream()
 			.map(it -> codeToId(it.code()))
-			.map(it -> fruitListInPort2.getFruitById(it)) // NOTE: this adapter calls a domain-service via port (I have not seen this yet in the HexArc-Blogs)
 			.toList();
 	}
 

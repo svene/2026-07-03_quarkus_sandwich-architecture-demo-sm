@@ -1,4 +1,4 @@
-package org.svenehrke.demo.outbound.fruit.memory;
+package org.svenehrke.demo.outbound.fruit;
 
 import java.util.List;
 

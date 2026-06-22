@@ -1,5 +1,5 @@
 package org.svenehrke.demo.core.fruit;
 
-public interface FruitListInPort2 {
+public interface FruitIdToFruitOutPort {
 	Fruit getFruitById(int id);
 }

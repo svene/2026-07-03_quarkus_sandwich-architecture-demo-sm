@@ -8,7 +8,7 @@ import jakarta.ws.rs.core.MediaType;
 import org.svenehrke.demo.core.fruit.FruitListInPort;
 
 /**
- * Wrapper/Adapter for `FruitListInPort.getFruits()`.
+ * Wrapper/InboundAdapter
  */
 @Path("/fruits")
 class FruitListInAdapter {

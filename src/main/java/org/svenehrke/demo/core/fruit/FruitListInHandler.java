@@ -5,10 +5,18 @@ import jakarta.inject.Inject;
 
 @ApplicationScoped
 public class FruitListInHandler implements FruitListInPort {
+
+	private final FruitListOutPort port;
+	private final FruitIdToFruitOutPort fruitIdToFruitOutPort;
+
 	@Inject
-	FruitListOutPort port;
+	public FruitListInHandler(FruitListOutPort port, FruitIdToFruitOutPort fruitIdToFruitOutPort) {
+		this.port = port;
+		this.fruitIdToFruitOutPort = fruitIdToFruitOutPort;
+	}
+
 	@Override
 	public String getFruits() {
-		return String.join(",", port.getFruits().stream().map(Fruit::name).toArray(String[]::new));
+		return String.join(",", port.getFruitIds().stream().map(it -> fruitIdToFruitOutPort.getFruitById(it).name()).toArray(String[]::new));
 	}
 }
