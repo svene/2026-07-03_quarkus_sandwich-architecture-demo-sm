@@ -1,14 +1,19 @@
 package org.svenehrke.demo.devsupport;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
 import static com.tngtech.archunit.library.Architectures.onionArchitecture;
 
 import com.tngtech.archunit.ArchConfiguration;
+import com.tngtech.archunit.base.DescribedPredicate;
+import com.tngtech.archunit.core.domain.JavaClass;
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
 import com.tngtech.archunit.core.importer.ImportOption;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 
@@ -17,6 +22,10 @@ class ArchitectureTest {
 	private static String PKG_CORE = PKG_ROOT + ".core";
 	private static String PKG_INBOUND = PKG_ROOT + ".inbound";
 	private static String PKG_OUTBOUND = PKG_ROOT + ".outbound";
+
+	DescribedPredicate<JavaClass> domainOrExternalLibPredicate =
+		JavaClass.Predicates.resideInAnyPackage(PKG_ROOT + "..")
+		.or(JavaClass.Predicates.resideOutsideOfPackage(PKG_ROOT));
 
 	JavaClasses importedClasses;
 
@@ -27,6 +36,7 @@ class ArchitectureTest {
 		ArchConfiguration.get().setProperty("import.dependencyResolutionProcess.maxIterationsForSupertypes", "0");
 		ArchConfiguration.get().setProperty("import.dependencyResolutionProcess.maxIterationsForEnclosingTypes", "0");
 		ArchConfiguration.get().setProperty("import.dependencyResolutionProcess.maxIterationsForGenericSignatureTypes", "0");
+		ArchConfiguration.get().setProperty("archRule.failOnEmptyShould", "false");
 
 		importedClasses = new ClassFileImporter(Arrays.asList(
 			ImportOption.Predefined.DO_NOT_INCLUDE_ARCHIVES,
@@ -49,9 +59,41 @@ class ArchitectureTest {
 		arch.check(importedClasses);
 	}
 	@Test
-	void t1() {
+	void classname_determines_package() {
 		classes().that().haveNameMatching(".*Handler").should().bePackagePrivate().check(importedClasses);
 		classes().that().haveNameMatching(".*Adapter").should().bePackagePrivate().check(importedClasses);
 		classes().that().haveNameMatching(".*Port").should().beInterfaces().check(importedClasses);
+
+		classes().that().haveNameMatching(".*InAdapter").should().resideInAPackage(PKG_ROOT + ".inbound..").check(importedClasses);
+
+		classes().that().haveNameMatching(".*Port").should().resideInAPackage(PKG_ROOT + ".core..").check(importedClasses);
+		classes().that().haveNameMatching(".*Handler").should().resideInAPackage(PKG_ROOT + ".core..").check(importedClasses);
+
+		classes().that().haveNameMatching(".*OutAdapter").should().resideInAPackage(PKG_ROOT + ".outbound..").check(importedClasses);
+		classes().that().haveNameMatching(".*Service").should().resideInAPackage(PKG_ROOT + ".outbound..").check(importedClasses);
+	}
+
+	@Test
+	void only_inwards() {
+		noClasses().that().resideInAPackage(PKG_ROOT + ".core..").should()
+			.dependOnClassesThat().resideInAPackage(PKG_INBOUND + "..").check(importedClasses);
+		noClasses().that().resideInAPackage(PKG_ROOT + ".core..").should()
+			.dependOnClassesThat().resideInAPackage(PKG_OUTBOUND + "..").check(importedClasses);
+		classes().that().resideInAPackage(PKG_ROOT + ".core..").should()
+			.onlyDependOnClassesThat().resideInAPackage(PKG_ROOT + ".core..")
+			.orShould().onlyDependOnClassesThat().resideOutsideOfPackage(PKG_ROOT)
+			.check(importedClasses);
+	}
+	@ParameterizedTest
+	@ValueSource(strings = {"fruits", "greeting"})
+	void only_inwards_inside_component(String pkg) {
+		classes().that().resideInAPackage(PKG_ROOT + ".outbound." + pkg + "..").should()
+			.onlyDependOnClassesThat().resideInAnyPackage(PKG_ROOT + ".core." + pkg + "..")
+			.orShould().onlyDependOnClassesThat().resideOutsideOfPackage(PKG_ROOT)
+			.check(importedClasses);
+		classes().that().resideInAPackage(PKG_ROOT + ".inbound." + pkg + "..").should()
+			.onlyDependOnClassesThat().resideInAnyPackage(PKG_ROOT + ".core." + pkg + "..")
+			.orShould().onlyDependOnClassesThat().resideOutsideOfPackage(PKG_ROOT)
+			.check(importedClasses);
 	}
 }
