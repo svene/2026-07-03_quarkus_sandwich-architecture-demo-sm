@@ -4,7 +4,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 @ApplicationScoped
-public class FruitListInHandler implements FruitListInPort {
+class FruitListInHandler implements FruitListInPort {
 
 	private final FruitListOutPort port;
 	private final FruitIdToFruitOutPort fruitIdToFruitOutPort;

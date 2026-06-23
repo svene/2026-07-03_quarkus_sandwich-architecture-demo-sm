@@ -1,5 +1,6 @@
 package org.svenehrke.demo.devsupport;
 
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.library.Architectures.onionArchitecture;
 
 import com.tngtech.archunit.ArchConfiguration;
@@ -46,5 +47,11 @@ class ArchitectureTest {
 			.adapter("inbound", PKG_INBOUND + "..")
 			;
 		arch.check(importedClasses);
+	}
+	@Test
+	void t1() {
+		classes().that().haveNameMatching(".*Handler").should().bePackagePrivate().check(importedClasses);
+		classes().that().haveNameMatching(".*Adapter").should().bePackagePrivate().check(importedClasses);
+		classes().that().haveNameMatching(".*Port").should().beInterfaces().check(importedClasses);
 	}
 }
