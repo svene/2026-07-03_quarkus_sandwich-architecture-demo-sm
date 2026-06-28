@@ -3,6 +3,8 @@ package org.svenehrke.demo.core.fruits;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
+import java.util.List;
+
 @ApplicationScoped
 class FruitListInHandler implements FruitListInPort {
 
@@ -16,7 +18,7 @@ class FruitListInHandler implements FruitListInPort {
 	}
 
 	@Override
-	public String getFruits() {
-		return String.join(",", port.getFruitIds().stream().map(it -> fruitIdToFruitOutPort.getFruitById(it).name()).toArray(String[]::new));
+	public List<Fruit> getFruits() {
+		return port.getFruitIds().stream().map(fruitIdToFruitOutPort::getFruitById).toList();
 	}
 }
