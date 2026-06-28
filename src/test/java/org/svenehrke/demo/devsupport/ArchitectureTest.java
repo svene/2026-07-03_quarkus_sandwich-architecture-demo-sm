@@ -16,6 +16,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
+import java.util.List;
 
 class ArchitectureTest {
 	private static String PKG_ROOT = "org.svenehrke.demo";
@@ -61,39 +62,51 @@ class ArchitectureTest {
 	@Test
 	void classname_determines_package() {
 		classes().that().haveNameMatching(".*Handler").should().bePackagePrivate().check(importedClasses);
-		classes().that().haveNameMatching(".*Adapter").should().bePackagePrivate().check(importedClasses);
-		classes().that().haveNameMatching(".*Port").should().beInterfaces().check(importedClasses);
-
-		classes().that().haveNameMatching(".*InAdapter").should().resideInAPackage(PKG_ROOT + ".inbound..").check(importedClasses);
 
 		classes().that().haveNameMatching(".*Port").should().resideInAPackage(PKG_ROOT + ".core..").check(importedClasses);
+		classes().that().haveNameMatching(".*Port").should().beInterfaces().check(importedClasses);
+		classes().that().haveNameMatching(".*Port").should().bePublic().check(importedClasses);
+
+		classes().that().haveNameMatching(".*Adapter").should().bePackagePrivate().check(importedClasses);
+		classes().that().haveNameMatching(".*InAdapter").should().resideInAPackage(PKG_ROOT + ".inbound..").check(importedClasses);
+		classes().that().haveNameMatching(".*OutAdapter").should().resideInAPackage(PKG_ROOT + ".outbound..").check(importedClasses);
+		classes().that().haveNameMatching(".*Adapter").should().haveNameMatching(".*InAdapter").orShould().haveNameMatching(".*OutAdapter").check(importedClasses);
+
 		classes().that().haveNameMatching(".*Handler").should().resideInAPackage(PKG_ROOT + ".core..").check(importedClasses);
 
-		classes().that().haveNameMatching(".*OutAdapter").should().resideInAPackage(PKG_ROOT + ".outbound..").check(importedClasses);
 		classes().that().haveNameMatching(".*Service").should().resideInAPackage(PKG_ROOT + ".outbound..").check(importedClasses);
 	}
 
 	@Test
 	void only_inwards() {
 		noClasses().that().resideInAPackage(PKG_ROOT + ".core..").should()
-			.dependOnClassesThat().resideInAPackage(PKG_INBOUND + "..").check(importedClasses);
-		noClasses().that().resideInAPackage(PKG_ROOT + ".core..").should()
-			.dependOnClassesThat().resideInAPackage(PKG_OUTBOUND + "..").check(importedClasses);
+			.dependOnClassesThat().resideInAnyPackage(PKG_INBOUND + "..", PKG_OUTBOUND + "..").check(importedClasses);
+
 		classes().that().resideInAPackage(PKG_ROOT + ".core..").should()
 			.onlyDependOnClassesThat().resideInAPackage(PKG_ROOT + ".core..")
 			.orShould().onlyDependOnClassesThat().resideOutsideOfPackage(PKG_ROOT)
 			.check(importedClasses);
 	}
+
+	/**
+	 * In addition to what the testname says:
+	 * This also means that accessing more than one 'component' (e.g. fruits and beverages) is only allowed
+	 * from inside the core part of combining component (e.g.: core/products)
+	 */
 	@ParameterizedTest
 	@ValueSource(strings = {"fruits", "greeting"})
 	void only_inwards_inside_component(String pkg) {
-		classes().that().resideInAPackage(PKG_ROOT + ".outbound." + pkg + "..").should()
-			.onlyDependOnClassesThat().resideInAnyPackage(PKG_ROOT + ".core." + pkg + "..")
-			.orShould().onlyDependOnClassesThat().resideOutsideOfPackage(PKG_ROOT)
-			.check(importedClasses);
-		classes().that().resideInAPackage(PKG_ROOT + ".inbound." + pkg + "..").should()
-			.onlyDependOnClassesThat().resideInAnyPackage(PKG_ROOT + ".core." + pkg + "..")
-			.orShould().onlyDependOnClassesThat().resideOutsideOfPackage(PKG_ROOT)
-			.check(importedClasses);
+		List.of("outbound", "inbound").forEach(inOrOut -> {
+			classes().that().resideInAPackage(PKG_ROOT + "." + inOrOut + "." + pkg + "..").should()
+				.onlyDependOnClassesThat().resideInAnyPackage(PKG_ROOT + ".core." + pkg + "..")
+				.orShould().onlyDependOnClassesThat().resideOutsideOfPackage(PKG_ROOT)
+				.check(importedClasses);
+		});
+	}
+
+	@Test
+	void other_than_ports_should_not_be_public() {
+		classes().that().resideInAnyPackage("..inbound..", "..outbound..")
+			.should().notBePublic().check(importedClasses);
 	}
 }

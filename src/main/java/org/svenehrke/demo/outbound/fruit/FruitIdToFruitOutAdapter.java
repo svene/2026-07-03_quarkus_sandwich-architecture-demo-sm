@@ -7,7 +7,7 @@ import org.svenehrke.demo.core.fruit.FruitIdToFruitOutPort;
 import java.util.Map;
 
 @ApplicationScoped
-class FruitIdToFruitAdapter implements FruitIdToFruitOutPort {
+class FruitIdToFruitOutAdapter implements FruitIdToFruitOutPort {
 
 	@Override
 	public Fruit getFruitById(int id) {
