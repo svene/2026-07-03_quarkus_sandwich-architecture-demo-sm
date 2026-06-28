@@ -23,6 +23,7 @@ class ArchitectureTest {
 	private static String PKG_CORE = PKG_ROOT + ".core";
 	private static String PKG_INBOUND = PKG_ROOT + ".inbound";
 	private static String PKG_OUTBOUND = PKG_ROOT + ".outbound";
+	private static final String[] expectedSubpackageNames = {"fruits", "beverages"};
 
 	DescribedPredicate<JavaClass> domainOrExternalLibPredicate =
 		JavaClass.Predicates.resideInAnyPackage(PKG_ROOT + "..")
@@ -94,7 +95,7 @@ class ArchitectureTest {
 	 * from inside the core part of combining component (e.g.: core/products)
 	 */
 	@ParameterizedTest
-	@ValueSource(strings = {"fruits", "greeting"})
+	@ValueSource(strings = {"fruits", "beverages", "products"})
 	void only_inwards_inside_component(String pkg) {
 		List.of("outbound", "inbound").forEach(inOrOut -> {
 			classes().that().resideInAPackage(PKG_ROOT + "." + inOrOut + "." + pkg + "..").should()
@@ -106,6 +107,16 @@ class ArchitectureTest {
 
 	@Test
 	void other_than_ports_should_not_be_public() {
+		classes().that().resideInAnyPackage("..inbound..", "..outbound..")
+			.should().notBePublic().check(importedClasses);
+	}
+	@ParameterizedTest
+	@ValueSource(strings = {"fruits", "beverages", "products"})
+	void only_defined_subpackages_exist(String pkg) {
+		List.of("outbound", "inbound", "core").forEach(hexaPkg -> {
+			classes().that().resideInAPackage(".." + hexaPkg + "..")
+				.should().resideInAnyPackage(".." + hexaPkg + "." + pkg);
+		});
 		classes().that().resideInAnyPackage("..inbound..", "..outbound..")
 			.should().notBePublic().check(importedClasses);
 	}
