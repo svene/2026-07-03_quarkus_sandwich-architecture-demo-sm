@@ -1,8 +1,8 @@
-package org.svenehrke.demo.outbound.fruit;
+package org.svenehrke.demo.outbound.fruits;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import org.svenehrke.demo.core.fruit.Fruit;
-import org.svenehrke.demo.core.fruit.FruitIdToFruitOutPort;
+import org.svenehrke.demo.core.fruits.Fruit;
+import org.svenehrke.demo.core.fruits.FruitIdToFruitOutPort;
 
 import java.util.Map;
 

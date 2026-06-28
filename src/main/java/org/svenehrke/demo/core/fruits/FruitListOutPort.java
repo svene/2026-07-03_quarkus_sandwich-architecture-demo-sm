@@ -1,4 +1,4 @@
-package org.svenehrke.demo.core.fruit;
+package org.svenehrke.demo.core.fruits;
 
 import java.util.List;
 

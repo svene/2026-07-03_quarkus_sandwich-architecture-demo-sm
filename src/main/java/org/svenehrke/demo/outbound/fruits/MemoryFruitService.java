@@ -1,7 +1,7 @@
-package org.svenehrke.demo.outbound.fruit;
+package org.svenehrke.demo.outbound.fruits;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import org.svenehrke.demo.core.fruit.FruitListOutPort;
+import org.svenehrke.demo.core.fruits.FruitListOutPort;
 import org.svenehrke.demo.outside.fruits.FruitDB;
 
 import java.util.List;
