@@ -1,0 +1,8 @@
+.page {
+	background-color: #4a87a9;
+	color: #ffffff;
+	/*display: flex;*/
+	/*flex-direction: row;*/
+	/*justify-content: space-around;*/
+	margin: 20px;
+}

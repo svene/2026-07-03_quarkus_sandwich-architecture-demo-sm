@@ -1,16 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Products</title>
-	<link rel="stylesheet" href="/css/simplepage.css"/>
+    <title>Products</title>
+    <link rel="stylesheet" href="/css/bulma/1.0.4/bulma.css"/>
 </head>
-<body class="page">
-<h1>All Products</h1>
+<body>
+<section class="hero is-link">
+    <div class="hero-body">
+        <p class="title">Hexagonal Architecture Demo</p>
+        <p class="subtitle">in a single-maven-module guarded by archunit</p>
+    </div>
+</section>
 
-<ul>
-{#for it in products}
-    <li>{it.name()}</li>
-{/for}
-</ul>
+<div class="container mt-1">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="#">Fruits</a>
+                <a class="navbar-item" href="#">Beverages</a>
+                <a class="navbar-item" href="#">Products</a>
+{!                <a class="navbar-item {#if selectedMenu == 'page1'}is-selected{/if}" href="{M03D04Routing:PAGE1_URL}">Page 1</a>
+                <a class="navbar-item {#if selectedMenu == 'page2'}is-selected{/if}" href="{M03D04Routing:PAGE2_URL}">Page 2</a>
+!}            </div>
+        </div>
+    </nav>
+
+    <div class="p-1 mt-1 area-border" style="min-height: 300px">
+        {!{#insert}{/insert}!}
+        <h1 class="title">All Products</h1>
+        <ul>
+            {#for it in products}
+                <li>{it.name()}</li>
+            {/for}
+        </ul>
+    </div>
+
+
+
 </body>
 </html>
