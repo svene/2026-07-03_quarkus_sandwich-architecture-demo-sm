@@ -2,15 +2,36 @@
 <html lang="en">
 <head>
 	<title>Beverages</title>
-	<link rel="stylesheet" href="/css/simplepage.css"/>
+	<link rel="stylesheet" href="/css/bulma/1.0.4/bulma.css"/>
 </head>
-<body class="page">
-<h1>All Beverages</h1>
+<body>
+<section class="hero is-link">
+	<div class="hero-body">
+		<p class="title">Hexagonal Architecture Demo</p>
+		<p class="subtitle">in a single-maven-module guarded by archunit</p>
+	</div>
+</section>
 
-<ul>
-{#for it in beverages}
-    <li>{it.name()}</li>
-{/for}
-</ul>
+<div class="container mt-1">
+	<nav class="navbar" role="navigation" aria-label="main navigation">
+		<div class="navbar-menu">
+			<div class="navbar-start">
+				<a class="navbar-item" href="/fruits">Fruits</a>
+				<a class="navbar-item is-selected" href="/beverages">Beverages</a>
+				<a class="navbar-item" href="/products">Products</a>
+			</div>
+		</div>
+	</nav>
+
+	<div class="p-1 mt-1 area-border" style="min-height: 300px">
+		<h1 class="title">All Beverages</h1>
+		<ul>
+            {#for it in beverages}
+				<li>{it.name()}</li>
+            {/for}
+		</ul>
+	</div>
+</div>
+
 </body>
 </html>
