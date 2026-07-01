@@ -1,0 +1,11 @@
+{@String selectedMenu}
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+	<div class="navbar-menu">
+		<div class="navbar-start">
+			<a class="navbar-item {#if selectedMenu == 'fruits'}is-selected{/if}" href="/fruits">Fruits</a>
+			<a class="navbar-item {#if selectedMenu == 'beverages'}is-selected{/if}" href="/beverages">Beverages</a>
+			<a class="navbar-item {#if selectedMenu == 'products'}is-selected{/if}" href="/products">Products</a>
+		</div>
+	</div>
+</nav>

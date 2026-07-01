@@ -1,36 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {#include org/svenehrke/demo/common/page_head.html}{/include}
     <title>Products</title>
-    <link rel="stylesheet" href="/css/bulma/1.0.4/bulma.css"/>
 </head>
 <body>
-<section class="hero is-link">
-    <div class="hero-body">
-        <p class="title">Hexagonal Architecture Demo</p>
-        <p class="subtitle">in a single-maven-module guarded by archunit</p>
-    </div>
-</section>
+{#include org/svenehrke/demo/common/banner.html}{/include}
 
 <div class="container mt-1">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-menu">
-            <div class="navbar-start">
-                <a class="navbar-item" href="/fruits">Fruits</a>
-                <a class="navbar-item" href="/beverages">Beverages</a>
-                <a class="navbar-item is-selected" href="/products">Products</a>
-            </div>
-        </div>
-    </nav>
+    {#include org/svenehrke/demo/common/menu.html selectedMenu="products"}{/include}
 
-    <div class="p-1 mt-1 area-border" style="min-height: 300px">
+    {#include org/svenehrke/demo/common/content}
         <h1 class="title">All Products</h1>
         <ul>
             {#for it in products}
                 <li>{it.name()}</li>
             {/for}
         </ul>
-    </div>
+    {/include}
+
 </div>
 
 </body>
