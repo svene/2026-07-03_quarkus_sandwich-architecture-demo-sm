@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.svenehrke.demo</groupId>
-    <artifactId>quarkus-hexarchi-demo-sm</artifactId>
+    <artifactId>quarkus-sandwich-architecture-demo-sm</artifactId>
     <version>1.0</version>
     <packaging>quarkus</packaging>
-    <name>quarkus-hexa-demo-sm</name>
+    <name>quarkus-sandwich-architecturedemo-sm</name>
 
     <properties>
         <compiler-plugin.version>3.15.0</compiler-plugin.version>
