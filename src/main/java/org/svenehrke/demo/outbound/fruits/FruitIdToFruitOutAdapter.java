@@ -14,7 +14,7 @@ class FruitIdToFruitOutAdapter implements FruitIdToFruitOutPort {
 		return fruits.get(id);
 	}
 
-	private Map<Integer, Fruit> fruits = Map.of(
+	private final Map<Integer, Fruit> fruits = Map.of(
 		1, new Fruit(1, "Apple"),
 		2, new Fruit(2, "Banana"),
 		3, new Fruit(3, "Orange")

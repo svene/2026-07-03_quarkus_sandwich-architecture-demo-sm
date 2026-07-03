@@ -9,6 +9,9 @@ import java.util.List;
 class FruitListInHandler implements FruitListInPort {
 
 	private final FruitListOutPort port;
+
+	// id -> Fruit mapping. Implemented by an out-adapter in this case, but for this case it could just as well be done in the core only
+	// TODO: use case which might justify an adapter: translations for the fruit names which might need a lookup in another DB
 	private final FruitIdToFruitOutPort fruitIdToFruitOutPort;
 
 	@Inject
@@ -19,6 +22,7 @@ class FruitListInHandler implements FruitListInPort {
 
 	@Override
 	public List<Fruit> getFruits() {
-		return port.getFruitIds().stream().map(fruitIdToFruitOutPort::getFruitById).toList();
+		List<Integer> fruitIds = port.getFruitIds();
+		return fruitIds.stream().map(fruitIdToFruitOutPort::getFruitById).toList();
 	}
 }
