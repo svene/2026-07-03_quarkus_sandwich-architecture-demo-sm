@@ -108,6 +108,15 @@ class ArchitectureTest {
 		classes().that().resideInAnyPackage("..inbound..", "..outbound..")
 			.should().notBePublic().check(importedClasses);
 	}
+
+	@Test
+	void only_inbound_should_use_api() {
+		classes().that().resideInAPackage("..core..")
+			.and().haveNameMatching(".*API")
+			.should().onlyBeAccessed().byClassesThat().resideInAPackage("..inbound..")
+			.check(importedClasses);
+	}
+
 	@ParameterizedTest
 	@ValueSource(strings = {"fruits", "beverages", "products"})
 	void only_defined_subpackages_exist(String pkg) {
