@@ -1,4 +1,4 @@
-package org.svenehrke.demo.outside.beverages;
+package org.svenehrke.demo.outside.backend.beverages;
 
 import java.util.List;
 

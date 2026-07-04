@@ -5,7 +5,7 @@ import jakarta.inject.Inject;
 import org.svenehrke.demo.core.beverages.Beverage;
 import org.svenehrke.demo.core.beverages.BeveragesListInPort2;
 import org.svenehrke.demo.core.beverages.BeveragesListOutPort;
-import org.svenehrke.demo.outside.beverages.BeveragesDB;
+import org.svenehrke.demo.outside.backend.beverages.BeveragesDB;
 
 import java.util.List;
 
