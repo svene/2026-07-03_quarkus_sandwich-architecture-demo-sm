@@ -2,6 +2,6 @@ package org.svenehrke.demo.core.beverages;
 
 import java.util.List;
 
-public interface BeveragesListInPort {
+public interface BeveragesListAPI {
 	List<Beverage> getBeverages();
 }

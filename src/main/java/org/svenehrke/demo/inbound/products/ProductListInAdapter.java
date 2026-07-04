@@ -5,7 +5,7 @@ import io.quarkus.qute.TemplateInstance;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
-import org.svenehrke.demo.core.beverages.BeveragesListInPort;
+import org.svenehrke.demo.core.beverages.BeveragesListAPI;
 import org.svenehrke.demo.core.fruits.FruitListInPort;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ class ProductListInAdapter {
 	FruitListInPort fruitListInPort;
 
     @Inject
-	BeveragesListInPort beveragesPort;
+	BeveragesListAPI beveragesPort;
 
     @CheckedTemplate(basePath = "org/svenehrke/demo/products")
     static class Templates {

@@ -6,7 +6,7 @@ import jakarta.inject.Inject;
 import java.util.List;
 
 @ApplicationScoped
-class BeveragesListInHandler implements BeveragesListInPort {
+class BeveragesListHandler implements BeveragesListAPI {
 	@Inject
 	BeveragesListOutPort port;
 	@Override

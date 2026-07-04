@@ -6,18 +6,18 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import org.svenehrke.demo.core.beverages.Beverage;
-import org.svenehrke.demo.core.beverages.BeveragesListInPort;
+import org.svenehrke.demo.core.beverages.BeveragesListAPI;
 
 import java.util.List;
 
 /**
- * Wrapper/Adapter for `BeveragesListInPort.getFruits()`.
+ * Wrapper/Adapter for `BeveragesListAPI.getFruits()`.
  */
 @Path("/beverages")
-class BeveragesListInAdapter {
+class HttpAdapterForBeveragesListAPI {
 
     @Inject
-	BeveragesListInPort port;
+	BeveragesListAPI port;
 
     @CheckedTemplate(basePath = "org/svenehrke/demo/beverages")
     static class Templates {
