@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Path("/products")
-class ProductListInAdapter {
+class ProductListHttpListener {
 
     @Inject
     FruitListAPI fruitListAPI;
 
     @Inject
-	BeveragesListAPI beveragesPort;
+	BeveragesListAPI beveragesAPI;
 
     @CheckedTemplate(basePath = "org/svenehrke/demo/products")
     static class Templates {
@@ -28,7 +28,7 @@ class ProductListInAdapter {
     public TemplateInstance products() {
         var products = new ArrayList<ProductVM>();
         products.addAll(fruitListAPI.getFruits().stream().map(it -> new ProductVM(it.id(), it.name())).toList());
-        products.addAll(beveragesPort.getBeverages().stream().map(it -> new ProductVM(it.id(), it.name())).toList());
+        products.addAll(beveragesAPI.getBeverages().stream().map(it -> new ProductVM(it.id(), it.name())).toList());
         return Templates.products(products);
     }
 }

@@ -7,7 +7,7 @@ import org.svenehrke.demo.outside.backend.fruits.FruitDB;
 import java.util.List;
 
 @ApplicationScoped
-class FruitsListDatabaseSPI implements FruitListSPI {
+class FruitsListDatabaseService implements FruitListSPI {
 	@Override
 	public List<Integer> getFruitIds() {
 		return new FruitDB().getFruits().stream()

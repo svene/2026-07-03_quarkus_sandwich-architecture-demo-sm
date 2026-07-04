@@ -14,7 +14,7 @@ import java.util.List;
  * Wrapper/Adapter for `BeveragesListAPI.getFruits()`.
  */
 @Path("/beverages")
-class BeveragesListHttpAPI {
+class BeveragesListHttpListener {
 
     @Inject
 	BeveragesListAPI port;

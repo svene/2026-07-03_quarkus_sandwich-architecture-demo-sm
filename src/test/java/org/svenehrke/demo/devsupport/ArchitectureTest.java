@@ -64,14 +64,10 @@ class ArchitectureTest {
 	void classname_determines_package() {
 		classes().that().haveNameMatching(".*Handler").should().bePackagePrivate().check(importedClasses);
 
-		classes().that().haveNameMatching(".*Port").should().resideInAPackage(PKG_ROOT + ".core..").check(importedClasses);
-		classes().that().haveNameMatching(".*Port").should().beInterfaces().check(importedClasses);
-		classes().that().haveNameMatching(".*Port").should().bePublic().check(importedClasses);
+		classes().that().haveNameMatching(PKG_CORE + ".*API").should().beInterfaces().check(importedClasses);
+		classes().that().haveNameMatching(PKG_CORE + ".*API").should().bePublic().check(importedClasses);
 
-		classes().that().haveNameMatching(".*Adapter").should().bePackagePrivate().check(importedClasses);
-		classes().that().haveNameMatching(".*InAdapter").should().resideInAPackage(PKG_ROOT + ".inbound..").check(importedClasses);
-		classes().that().haveNameMatching(".*OutAdapter").should().resideInAPackage(PKG_ROOT + ".outbound..").check(importedClasses);
-		classes().that().haveNameMatching(".*Adapter").should().haveNameMatching(".*InAdapter").orShould().haveNameMatching(".*OutAdapter").check(importedClasses);
+		classes().that().haveNameMatching(".*HttpListener").should().resideInAPackage(PKG_ROOT + ".inbound..").check(importedClasses);
 
 		classes().that().haveNameMatching(".*Handler").should().resideInAPackage(PKG_ROOT + ".core..").check(importedClasses);
 
