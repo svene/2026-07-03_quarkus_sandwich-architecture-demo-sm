@@ -5,10 +5,8 @@ import io.quarkus.qute.TemplateInstance;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
 import org.svenehrke.demo.core.fruits.Fruit;
-import org.svenehrke.demo.core.fruits.FruitListInPort;
+import org.svenehrke.demo.core.fruits.FruitListAPI;
 
 import java.util.List;
 
@@ -16,10 +14,15 @@ import java.util.List;
  * Wrapper/InboundAdapter
  */
 @Path("/fruits")
-class FruitListInAdapter {
+class HttpAdapterForFruitsListAPI {
 
     @Inject
-    FruitListInPort port;
+	FruitListAPI port;
+
+    @GET
+    public TemplateInstance fruits() {
+        return Templates.fruits(port.getFruits());
+    }
 
     @CheckedTemplate(basePath = "org/svenehrke/demo/fruits")
     static class Templates {
@@ -27,8 +30,4 @@ class FruitListInAdapter {
         public static native TemplateInstance fruits(List<Fruit> fruits);
     }
 
-    @GET
-    public TemplateInstance fruits() {
-        return Templates.fruits(port.getFruits());
-    }
 }

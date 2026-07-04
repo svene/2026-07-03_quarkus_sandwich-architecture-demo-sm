@@ -19,13 +19,14 @@ class HttpAdapterForBeveragesListAPI {
     @Inject
 	BeveragesListAPI port;
 
+    @GET
+    public TemplateInstance beverages() {
+        return Templates.beverages(port.getBeverages());
+    }
+
     @CheckedTemplate(basePath = "org/svenehrke/demo/beverages")
     static class Templates {
         // parameter name must be "name"
         public static native TemplateInstance beverages(List<Beverage> beverages);
-    }
-    @GET
-    public TemplateInstance beverages() {
-        return Templates.beverages(port.getBeverages());
     }
 }

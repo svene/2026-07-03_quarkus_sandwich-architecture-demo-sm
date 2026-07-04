@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 @ApplicationScoped
-class FruitListInHandler implements FruitListInPort {
+class FruitListHandler implements FruitListAPI {
 
-	private final FruitListOutPort port;
+	private final FruitListSPI port;
 
 	@Inject
-	public FruitListInHandler(FruitListOutPort port) {
+	public FruitListHandler(FruitListSPI port) {
 		this.port = port;
 	}
 
