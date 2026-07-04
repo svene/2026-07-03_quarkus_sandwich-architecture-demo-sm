@@ -7,7 +7,7 @@ import org.svenehrke.demo.outside.backend.beverages.BeveragesDB;
 import java.util.List;
 
 @ApplicationScoped
-class InMemoryAdapterForBeveragesListSPI implements BeveragesListSPI {
+class BeveragesListDatabaseSPI implements BeveragesListSPI {
 
 	@Override
 	public List<Integer> getBeverages() {
