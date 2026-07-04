@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Path("/products")
-class ProductListHttpListener {
+class ProductListHttpReceiver {
 
     @Inject
     FruitListAPI fruitListAPI;

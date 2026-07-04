@@ -66,8 +66,10 @@ class ArchitectureTest {
 
 		classes().that().haveNameMatching(PKG_CORE + ".*API").should().beInterfaces().check(importedClasses);
 		classes().that().haveNameMatching(PKG_CORE + ".*API").should().bePublic().check(importedClasses);
+		classes().that().haveNameMatching(PKG_CORE + ".*SPI").should().beInterfaces().check(importedClasses);
+		classes().that().haveNameMatching(PKG_CORE + ".*SPI").should().bePublic().check(importedClasses);
 
-		classes().that().haveNameMatching(".*HttpListener").should().resideInAPackage(PKG_ROOT + ".inbound..").check(importedClasses);
+		classes().that().haveNameMatching(".*Receiver").should().resideInAPackage(PKG_ROOT + ".inbound..").check(importedClasses);
 
 		classes().that().haveNameMatching(".*Handler").should().resideInAPackage(PKG_ROOT + ".core..").check(importedClasses);
 
@@ -102,7 +104,7 @@ class ArchitectureTest {
 	}
 
 	@Test
-	void other_than_ports_should_not_be_public() {
+	void inbound_and_outbounds_should_not_be_public() {
 		classes().that().resideInAnyPackage("..inbound..", "..outbound..")
 			.should().notBePublic().check(importedClasses);
 	}

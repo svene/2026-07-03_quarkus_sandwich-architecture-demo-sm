@@ -14,7 +14,7 @@ import java.util.List;
  * Wrapper/InboundAdapter
  */
 @Path("/fruits")
-class FruitsListHttpListener {
+class FruitsListHttpReceiver {
 
     @Inject
 	FruitListAPI port;
