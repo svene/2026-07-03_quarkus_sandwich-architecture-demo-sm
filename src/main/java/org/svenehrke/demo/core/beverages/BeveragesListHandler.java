@@ -2,7 +2,6 @@ package org.svenehrke.demo.core.beverages;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import org.svenehrke.demo.core.fruits.Fruit;
 
 import java.util.List;
 import java.util.Map;
@@ -13,10 +12,10 @@ class BeveragesListHandler implements BeveragesListAPI {
 	BeveragesListSPI port;
 	@Override
 	public List<Beverage> getBeverages() {
-		return port.getBeverages().stream().map(items::get).toList();
+		return port.getBeverages().stream().map(beverages::get).toList();
 	}
 
-	private final Map<Integer, Beverage> items = Map.of(
+	private final Map<Integer, Beverage> beverages = Map.of(
 		// TODO: support i18n: "labels.water"
 		//  does it makes sense ?
 		//  are translations not rather provided by DB ?
