@@ -6,16 +6,15 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import org.svenehrke.demo.core.beverages.BeveragesListAPI;
-import org.svenehrke.demo.core.fruits.FruitListAPI;
+import org.svenehrke.demo.core.products.ProductListAPI;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Path("/products")
 class ProductListHttpReceiver {
 
     @Inject
-    FruitListAPI fruitListAPI;
+	ProductListAPI productListAPI;
 
     @Inject
 	BeveragesListAPI beveragesAPI;
@@ -26,9 +25,7 @@ class ProductListHttpReceiver {
     }
     @GET
     public TemplateInstance products() {
-        var products = new ArrayList<ProductVM>();
-        products.addAll(fruitListAPI.getFruits().stream().map(it -> new ProductVM(it.id(), it.name())).toList());
-        products.addAll(beveragesAPI.getBeverages().stream().map(it -> new ProductVM(it.id(), it.name())).toList());
+        var products = productListAPI.getProducts().stream().map(it -> new ProductVM(it.id(), it.name())).toList();
         return Templates.products(products);
     }
 }
