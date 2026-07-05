@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 @ApplicationScoped
-class FruitListHandler implements FruitListAPI {
+public class FruitListHandler implements FruitListAPI {
 
 	private final FruitListSPI port;
 

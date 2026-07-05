@@ -7,9 +7,15 @@ import java.util.List;
 import java.util.Map;
 
 @ApplicationScoped
-class BeveragesListHandler implements BeveragesListAPI {
+public class BeveragesListHandler implements BeveragesListAPI {
+
+	private final BeveragesListSPI port;
+
 	@Inject
-	BeveragesListSPI port;
+	public BeveragesListHandler(BeveragesListSPI port) {
+		this.port = port;
+	}
+
 	@Override
 	public List<Beverage> getBeverages() {
 		return port.getBeverages().stream().map(beverages::get).toList();
