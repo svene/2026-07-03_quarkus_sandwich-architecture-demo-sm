@@ -11,11 +11,14 @@ import java.util.List;
 @ApplicationScoped
 public class ProductListHandler implements ProductListAPI {
 
-	@Inject
-	FruitListAPI fruitListAPI;
+	private final FruitListAPI fruitListAPI;
+	private final BeveragesListAPI beveragesAPI;
 
 	@Inject
-	BeveragesListAPI beveragesAPI;
+	public ProductListHandler(FruitListAPI fruitListAPI, BeveragesListAPI beveragesAPI) {
+		this.fruitListAPI = fruitListAPI;
+		this.beveragesAPI = beveragesAPI;
+	}
 
 	@Override
 	public List<Product> getProducts() {
