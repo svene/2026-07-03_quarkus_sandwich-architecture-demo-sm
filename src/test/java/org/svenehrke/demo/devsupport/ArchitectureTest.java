@@ -62,8 +62,6 @@ class ArchitectureTest {
 	}
 	@Test
 	void classname_determines_package() {
-		classes().that().haveNameMatching(".*Handler").should().bePackagePrivate().check(importedClasses);
-
 		classes().that().haveNameMatching(PKG_CORE + ".*API").should().beInterfaces().check(importedClasses);
 		classes().that().haveNameMatching(PKG_CORE + ".*API").should().bePublic().check(importedClasses);
 		classes().that().haveNameMatching(PKG_CORE + ".*SPI").should().beInterfaces().check(importedClasses);
@@ -114,6 +112,15 @@ class ArchitectureTest {
 		classes().that().resideInAPackage("..core..")
 			.and().haveNameMatching(".*API")
 			.should().onlyBeAccessed().byClassesThat().resideInAPackage("..inbound..")
+			.check(importedClasses);
+	}
+
+	@Test
+	void handlers_should_only_call_spi_or_other_handlers() {
+		classes().that().resideInAPackage("..core..")
+			.and().haveNameMatching(".*Handler")
+			.should().onlyBeAccessed().byClassesThat().resideInAPackage("..inbound..")
+			.orShould().onlyBeAccessed().byClassesThat().resideInAPackage("..core..")
 			.check(importedClasses);
 	}
 
