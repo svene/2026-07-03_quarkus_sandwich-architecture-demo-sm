@@ -7,8 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 @ApplicationScoped
-public class BeveragesListHandler implements BeveragesListAPI {
+public class BeveragesListHandler implements APIs.BeveragesListAPI {
 
+	public interface BeveragesListSPI {
+		List<Integer> getBeverages();
+	}
 	private final BeveragesListSPI port;
 
 	@Inject

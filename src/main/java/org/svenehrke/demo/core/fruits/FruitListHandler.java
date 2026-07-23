@@ -2,12 +2,17 @@ package org.svenehrke.demo.core.fruits;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import org.svenehrke.demo.core.beverages.APIs;
 
 import java.util.List;
 import java.util.Map;
 
 @ApplicationScoped
-public class FruitListHandler implements FruitListAPI {
+public class FruitListHandler implements APIs.FruitListAPI {
+
+	public interface FruitListSPI {
+		List<Integer> getFruitIds();
+	}
 
 	private final FruitListSPI port;
 

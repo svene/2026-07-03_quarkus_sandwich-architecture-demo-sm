@@ -5,7 +5,7 @@ import io.quarkus.qute.TemplateInstance;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
-import org.svenehrke.demo.core.beverages.BeveragesListAPI;
+import org.svenehrke.demo.core.beverages.APIs;
 import org.svenehrke.demo.core.products.ProductListAPI;
 
 import java.util.List;
@@ -17,7 +17,7 @@ class ProductListHttpReceiver {
 	ProductListAPI productListAPI;
 
     @Inject
-	BeveragesListAPI beveragesAPI;
+	APIs.BeveragesListAPI beveragesAPI;
 
     @CheckedTemplate(basePath = "org/svenehrke/demo/products")
     static class Templates {

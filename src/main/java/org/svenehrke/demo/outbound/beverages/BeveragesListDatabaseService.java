@@ -1,13 +1,13 @@
 package org.svenehrke.demo.outbound.beverages;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import org.svenehrke.demo.core.beverages.BeveragesListSPI;
+import org.svenehrke.demo.core.beverages.BeveragesListHandler;
 import org.svenehrke.demo.outside.backend.beverages.BeveragesDB;
 
 import java.util.List;
 
 @ApplicationScoped
-class BeveragesListDatabaseService implements BeveragesListSPI {
+class BeveragesListDatabaseService implements BeveragesListHandler.BeveragesListSPI {
 
 	@Override
 	public List<Integer> getBeverages() {

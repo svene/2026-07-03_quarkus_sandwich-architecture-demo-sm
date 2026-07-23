@@ -3,9 +3,7 @@ package org.svenehrke.demo.core.products;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.svenehrke.demo.core.beverages.BeveragesListHandler;
-import org.svenehrke.demo.core.beverages.BeveragesListSPI;
 import org.svenehrke.demo.core.fruits.FruitListHandler;
-import org.svenehrke.demo.core.fruits.FruitListSPI;
 
 import java.util.List;
 
@@ -14,10 +12,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ProductListHandlerTest {
 
 	private final
-	FruitListSPI fruitListSPI = Mockito.mock(FruitListSPI.class);
+	FruitListHandler.FruitListSPI fruitListSPI = Mockito.mock(FruitListHandler.FruitListSPI.class);
 
 	private final
-	BeveragesListSPI beveragesSPI = Mockito.mock(BeveragesListSPI.class);
+	BeveragesListHandler.BeveragesListSPI beveragesSPI = Mockito.mock(BeveragesListHandler.BeveragesListSPI.class);
 
 	@Test
 	void getProductList() {

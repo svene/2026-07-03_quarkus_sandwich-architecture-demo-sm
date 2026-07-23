@@ -1,13 +1,13 @@
 package org.svenehrke.demo.outbound.fruits;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import org.svenehrke.demo.core.fruits.FruitListSPI;
+import org.svenehrke.demo.core.fruits.FruitListHandler;
 import org.svenehrke.demo.outside.backend.fruits.FruitDB;
 
 import java.util.List;
 
 @ApplicationScoped
-class FruitsListDatabaseService implements FruitListSPI {
+class FruitsListDatabaseService implements FruitListHandler.FruitListSPI {
 	@Override
 	public List<Integer> getFruitIds() {
 		return new FruitDB().getFruits().stream()

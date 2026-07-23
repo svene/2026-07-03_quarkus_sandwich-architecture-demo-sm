@@ -3,9 +3,7 @@ package org.svenehrke.demo.core.products;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.svenehrke.demo.core.beverages.BeveragesListHandler;
-import org.svenehrke.demo.core.beverages.BeveragesListSPI;
 import org.svenehrke.demo.core.fruits.FruitListHandler;
-import org.svenehrke.demo.core.fruits.FruitListSPI;
 
 import java.util.ArrayList;
 import java.util.List;
