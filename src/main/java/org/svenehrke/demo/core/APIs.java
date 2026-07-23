@@ -10,4 +10,8 @@ public interface APIs {
 	interface FruitListAPI {
 		List<Fruit> getFruits();
 	}
+
+	interface ProductListAPI {
+		List<Product> getProducts();
+	}
 }

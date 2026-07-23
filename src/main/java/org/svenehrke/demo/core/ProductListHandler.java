@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
-public class ProductListHandler implements ProductListAPI {
+public class ProductListHandler implements APIs.ProductListAPI {
 
 	private final FruitListHandler fruitListHandler;
 	private final BeveragesListHandler beveragesListHandler;

@@ -6,7 +6,6 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import org.svenehrke.demo.core.APIs;
-import org.svenehrke.demo.core.ProductListAPI;
 
 import java.util.List;
 
@@ -14,7 +13,7 @@ import java.util.List;
 class ProductListHttpReceiver {
 
     @Inject
-	ProductListAPI productListAPI;
+    APIs.ProductListAPI productListAPI;
 
     @Inject
 	APIs.BeveragesListAPI beveragesAPI;
