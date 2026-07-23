@@ -14,16 +14,16 @@ public class FruitListHandler implements APIs.FruitListAPI {
 		List<Integer> getFruitIds();
 	}
 
-	private final FruitListSPI port;
+	private final FruitListSPI fruitListSPI;
 
 	@Inject
-	public FruitListHandler(FruitListSPI port) {
-		this.port = port;
+	public FruitListHandler(FruitListSPI fruitListSPI) {
+		this.fruitListSPI = fruitListSPI;
 	}
 
 	@Override
 	public List<Fruit> getFruits() {
-		List<Integer> fruitIds = port.getFruitIds();
+		List<Integer> fruitIds = fruitListSPI.getFruitIds();
 		return fruitIds.stream().map(fruits::get).toList();
 	}
 

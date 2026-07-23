@@ -17,11 +17,11 @@ import java.util.List;
 class BeveragesListHttpReceiver {
 
     @Inject
-    APIs.BeveragesListAPI port;
+    APIs.BeveragesListAPI beveragesListAPI;
 
     @GET
     public TemplateInstance beverages() {
-        return Templates.beverages(port.getBeverages());
+        return Templates.beverages(beveragesListAPI.getBeverages());
     }
 
     @CheckedTemplate(basePath = "org/svenehrke/demo/beverages")

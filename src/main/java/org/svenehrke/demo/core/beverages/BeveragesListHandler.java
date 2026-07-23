@@ -12,16 +12,16 @@ public class BeveragesListHandler implements APIs.BeveragesListAPI {
 	public interface BeveragesListSPI {
 		List<Integer> getBeverages();
 	}
-	private final BeveragesListSPI port;
+	private final BeveragesListSPI beveragesListSPI;
 
 	@Inject
-	public BeveragesListHandler(BeveragesListSPI port) {
-		this.port = port;
+	public BeveragesListHandler(BeveragesListSPI beveragesListSPI) {
+		this.beveragesListSPI = beveragesListSPI;
 	}
 
 	@Override
 	public List<Beverage> getBeverages() {
-		return port.getBeverages().stream().map(beverages::get).toList();
+		return beveragesListSPI.getBeverages().stream().map(beverages::get).toList();
 	}
 
 	private final Map<Integer, Beverage> beverages = Map.of(

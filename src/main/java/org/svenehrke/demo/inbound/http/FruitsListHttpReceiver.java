@@ -17,11 +17,11 @@ import java.util.List;
 class FruitsListHttpReceiver {
 
     @Inject
-	APIs.FruitListAPI port;
+	APIs.FruitListAPI fruitListAPI;
 
     @GET
     public TemplateInstance fruits() {
-        return Templates.fruits(port.getFruits());
+        return Templates.fruits(fruitListAPI.getFruits());
     }
 
     @CheckedTemplate(basePath = "org/svenehrke/demo/fruits")
