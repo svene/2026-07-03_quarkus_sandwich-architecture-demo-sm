@@ -1,9 +1,7 @@
-package org.svenehrke.demo.core.products;
+package org.svenehrke.demo.core;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import org.svenehrke.demo.core.beverages.BeveragesListHandler;
-import org.svenehrke.demo.core.fruits.FruitListHandler;
 
 import java.util.ArrayList;
 import java.util.List;

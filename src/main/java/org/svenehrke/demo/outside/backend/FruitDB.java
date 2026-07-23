@@ -1,11 +1,11 @@
-package org.svenehrke.demo.outside.backend.beverages;
+package org.svenehrke.demo.outside.backend;
 
 import java.util.List;
 
-public class BeveragesDB {
+public class FruitDB {
 	public record PersistedFruit(String code, String name){}
 
-	public List<PersistedFruit> getBeverages() {
+	public List<PersistedFruit> getFruits() {
 		return List.of(
 			new PersistedFruit("ap", "Apple"),
 			new PersistedFruit("ba", "Banana"),

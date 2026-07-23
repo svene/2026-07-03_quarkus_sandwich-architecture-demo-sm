@@ -1,23 +1,24 @@
-package org.svenehrke.demo.outbound.fruits;
+package org.svenehrke.demo.outbound;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import org.svenehrke.demo.core.fruits.FruitListHandler;
-import org.svenehrke.demo.outside.backend.fruits.FruitDB;
+import org.svenehrke.demo.core.BeveragesListHandler;
+import org.svenehrke.demo.outside.backend.BeveragesDB;
 
 import java.util.List;
 
 @ApplicationScoped
-class FruitsListDatabaseService implements FruitListHandler.FruitListSPI {
+class BeveragesListDatabaseService implements BeveragesListHandler.BeveragesListSPI {
+
 	@Override
-	public List<Integer> getFruitIds() {
-		return new FruitDB().getFruits().stream()
+	public List<Integer> getBeverages() {
+		return new BeveragesDB().getBeverages().stream()
 			.map(it -> codeToId(it.code()))
 			.toList();
 	}
 
 	/**
 	 * This method of the Adapter has the knowledge of how to map a
-	 * PersistentFruit to a domain-Fruit
+	 * persistent-code to a domain-id
 	 */
 	private int codeToId(String code) {
 		return switch (code) {

@@ -1,6 +1,4 @@
-package org.svenehrke.demo.core.beverages;
-
-import org.svenehrke.demo.core.fruits.Fruit;
+package org.svenehrke.demo.core;
 
 import java.util.List;
 

@@ -2,8 +2,10 @@ package org.svenehrke.demo.core.products;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.svenehrke.demo.core.beverages.BeveragesListHandler;
-import org.svenehrke.demo.core.fruits.FruitListHandler;
+import org.svenehrke.demo.core.BeveragesListHandler;
+import org.svenehrke.demo.core.FruitListHandler;
+import org.svenehrke.demo.core.Product;
+import org.svenehrke.demo.core.ProductListHandler;
 
 import java.util.List;
 

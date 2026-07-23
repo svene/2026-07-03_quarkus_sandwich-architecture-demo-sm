@@ -1,4 +1,4 @@
-package org.svenehrke.demo.core.products;
+package org.svenehrke.demo.core;
 
 import java.util.List;
 

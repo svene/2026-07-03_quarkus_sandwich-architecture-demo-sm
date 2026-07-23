@@ -5,8 +5,8 @@ import io.quarkus.qute.TemplateInstance;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
-import org.svenehrke.demo.core.beverages.APIs;
-import org.svenehrke.demo.core.fruits.Fruit;
+import org.svenehrke.demo.core.APIs;
+import org.svenehrke.demo.core.Fruit;
 
 import java.util.List;
 

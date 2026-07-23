@@ -1,8 +1,7 @@
-package org.svenehrke.demo.core.fruits;
+package org.svenehrke.demo.core;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import org.svenehrke.demo.core.beverages.APIs;
 
 import java.util.List;
 import java.util.Map;
